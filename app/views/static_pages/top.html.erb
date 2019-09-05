@@ -13,25 +13,27 @@
   
   
   
-  <div class="top-login">
-    <a2>ログイン</a2>
-    <div class="row">
-      <div class="col-md-6 colmd-offset-3">
-        <%= form_with(scope: :session, url: login_path, local:true) do |f| %>
-          <%= f.label :email, class: "label-login" %>
-          <%= f.email_field :email, class: 'form-control' %>
-          <%= f.label :password, class: "label-login" %>
-          <%= f.password_field :password, class: 'form-control' %>
-          <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
-            <%= f.check_box :remember_me, id: "remember-me" %>
-            <span>ログイン情報を記憶する</span>
+  <div class="container">
+    <div class="form-heading">ログイン</div>
+    <div class="form users-form">
+      <div class="form-body">
+        <div class="col-md-6 colmd-offset-3">
+          <%= form_with(scope: :session, url: login_path, local:true) do |f| %>
+            <%= f.label :メールアドレス, class: "label-login" %>
+            <%= f.email_field :email, class: 'form-control' %>
+            <%= f.label :パスワード, class: "label-login" %>
+            <%= f.password_field :password, class: 'form-control' %>
+            <%= f.label :remember_me, class: "checkbox inline checkbox-login", for: "remember-me" do %>
+              <%= f.check_box :remember_me, id: "remember-me" %>
+              <span>ログイン情報を記憶する</span>
+            <% end %>
+            <% if logged_in? %>
+            <%= f.submit "ログイン状態です", class: "btn btn-primary btn-block btn-login" %>
+            <% else %>
+            <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
+            <% end %>
           <% end %>
-          <% if logged_in? %>
-          <%= f.submit "ログイン状態です", class: "btn btn-primary btn-block btn-login" %>
-          <% else %>
-          <%= f.submit "ログイン", class: "btn btn-primary btn-block btn-login" %>
-          <% end %>
-        <% end %>
+        </div>
       </div>
     </div>
   </div>
