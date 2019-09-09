@@ -1,4 +1,8 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: [:show, :edit, :update]
+  before_action :logged_in_user, only: [:index, :show, :edit, :update]
+  before_action :correct_user, only: [:edit, :update]
+  
  
   # ユーザー一覧
   def index
@@ -30,6 +34,19 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
+  def edit
+    @user = User.find(params[:id])
+  end  
+  
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(user_params)
+      flash[:success] =  "ユーザー情報を更新しました。"
+      redirect_to @user
+    else
+      render :edit
+    end
+  end
   
   
   private
@@ -58,11 +75,12 @@ class UsersController < ApplicationController
   
   # 現在ログインしているユーザー確認
   def correct_user
-    redirect_to(root_url) unless current_user?(@user)
+   @user = User.find(params[:id])
+      redirect_to(root_url) unless @user == current_user
   end
   
-  def admin_user
-      redirect_to root_url unless current_user.admin?
-  end
+  # def admin_user
+  #     redirect_to root_url unless current_user.admin?
+  # end
   
 end
