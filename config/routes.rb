@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  get 'posts/index', to: 'posts#index'
   get 'tasks/top', to: 'tasks#top'
 
   root 'static_pages#top'
@@ -10,4 +12,5 @@ Rails.application.routes.draw do
   
   
   resources :users
+  resources :tasks
 end
