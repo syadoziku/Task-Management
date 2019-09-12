@@ -1,35 +1,36 @@
-<header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="header">
-    <div class="container">
-      <%= link_to "Task App", root_path, id: "logo" %>
-      <nav>
-        <ul class="nav navbar-nav navbar-right">
-          <li><%= link_to "トップ", root_path, id: "list" %></li>
-          <% if logged_in? %>
-            <li><%= link_to "利用者一覧", users_path, id: "list" %></li>
-            <li><%=link_to"タスク作成", posts_new_path, id: "list" %></li>
-            
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <%= User.find(session[:user_id]).name %>
-                <b class="caret">
-                </b>
-              </a>
-              <ul class="dropdown-menu">
-                <th>ユーザー</th>
-                <li><%= link_to "プロフィール", current_user %></li>
-                <li><%= link_to "設定", edit_user_path(current_user) %></li>
-                <li class="divider"></li>
-                <th>タスク</th>
-                <li><%= link_to "タスク一覧", posts_index_path %></li>
-                <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
-              </ul>
-            </li>
-          <% else %>
-            <li><%= link_to "ログイン", login_path, id: "list" %></li>
-          <% end %>
-        </ul>
-      </nav>
+
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="header">
+      <div class="container">
+        <%= link_to "Task App", root_path, id: "logo" %>
+        <nav>
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "トップ", root_path, id: "list" %></li>
+            <% if logged_in? %>
+              <li><%= link_to "利用者一覧", users_path, id: "list" %></li>
+              <li><%=link_to"タスク作成", posts_new_path, id: "list" %></li>
+              
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <%= User.find(session[:user_id]).name %>
+                  <b class="caret">
+                  </b>
+                </a>
+                <ul class="dropdown-menu">
+                  <th>ユーザー</th>
+                  <li><%= link_to "プロフィール", current_user %></li>
+                  <li><%= link_to "設定", edit_user_path(current_user) %></li>
+                  <li class="divider"></li>
+                  <th>タスク</th>
+                  <li><%= link_to "タスク一覧", posts_index_path %></li>
+                  <li><%= link_to "ログアウト", logout_path, method: :delete %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li><%= link_to "ログイン", login_path, id: "list" %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
